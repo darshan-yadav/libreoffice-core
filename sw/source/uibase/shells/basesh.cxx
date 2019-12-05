@@ -141,6 +141,8 @@ static sal_uInt8 nFooterPos;
 #include <swslots.hxx>
 
 #include <AccessibilityCheck.hxx>
+#include <svx/AccessibilityCheckDialog.hxx>
+
 namespace
 {
     SvxContourDlg* GetContourDlg(SwView const &rView)
@@ -2647,6 +2649,8 @@ void SwBaseShell::ExecDlg(SfxRequest &rReq)
         {
             AccessibilityCheck aCheck(rSh.GetDoc());
             aCheck.check();
+            AccessibilityCheckDialog aDialog(pMDI, aCheck.getResultCollecton());
+            aDialog.run();
         }
         break;
         default:OSL_FAIL("wrong Dispatcher (basesh.cxx)");
